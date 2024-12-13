@@ -1,0 +1,383 @@
+:root {
+    --primary-color: #007AFF;
+    --background-color: #000000;
+    --card-background: rgba(255, 255, 255, 0.15);
+    --text-color: #FFFFFF;
+    --border-radius: 12px;
+    --sapphire-blue: rgba(30, 144, 255, 0.9);
+    --sapphire-glow: 0 0 20px rgba(65, 105, 225, 0.9);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.5;
+    position: relative;
+    overflow-x: hidden;
+    &::before {
+        content: '';
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 40%;
+        height: 100%;
+        background: url('./assets/ironman.png') no-repeat left center;
+        background-size: contain;
+        opacity: 0.2;
+        z-index: -2;
+        animation: ironmanBreath 4s ease-in-out infinite;
+        filter: drop-shadow(0 0 20px rgba(0, 231, 255, 0.4));
+    }
+    &::after {
+        content: '';
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        height: 300px;
+        background: 
+            radial-gradient(circle at center,
+                rgba(0, 231, 255, 0.8) 0%,
+                rgba(0, 231, 255, 0.3) 20%,
+                rgba(0, 231, 255, 0.1) 40%,
+                transparent 60%);
+        border-radius: 50%;
+        box-shadow:
+            0 0 50px rgba(0, 231, 255, 0.5),
+            0 0 100px rgba(0, 231, 255, 0.3),
+            inset 0 0 50px rgba(0, 231, 255, 0.5);
+        animation: eyePulse 4s ease-in-out infinite;
+        z-index: -1;
+        &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 320px;
+            height: 320px;
+            border: 2px solid rgba(0, 231, 255, 0.3);
+            border-radius: 50%;
+            animation: rotate 10s linear infinite;
+        }
+        &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle at center,
+                rgba(0, 231, 255, 0.8) 0%,
+                transparent 70%);
+            border-radius: 50%;
+            animation: innerGlow 2s ease-in-out infinite;
+        }
+    }
+}
+
+@keyframes ironmanBreath {
+    0% {
+        opacity: 0.15;
+        filter: drop-shadow(0 0 20px rgba(0, 231, 255, 0.4));
+    }
+    50% {
+        opacity: 0.25;
+        filter: drop-shadow(0 0 30px rgba(0, 231, 255, 0.6));
+    }
+    100% {
+        opacity: 0.15;
+        filter: drop-shadow(0 0 20px rgba(0, 231, 255, 0.4));
+    }
+}
+
+@keyframes eyePulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        filter: brightness(1) hue-rotate(0deg);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+        filter: brightness(1.3) hue-rotate(30deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        filter: brightness(1) hue-rotate(0deg);
+    }
+}
+
+@keyframes innerGlow {
+    0% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+    100% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes rotate {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        box-shadow: 
+            0 0 50px rgba(0, 231, 255, 0.5),
+            0 0 100px rgba(0, 231, 255, 0.3),
+            0 0 150px rgba(0, 231, 255, 0.2),
+            inset 0 0 50px rgba(0, 231, 255, 0.5);
+        filter: brightness(1.2);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+        box-shadow: 
+            0 0 100px rgba(0, 231, 255, 0.6),
+            0 0 200px rgba(0, 231, 255, 0.4),
+            0 0 300px rgba(0, 231, 255, 0.3),
+            inset 0 0 100px rgba(0, 231, 255, 0.6);
+        filter: brightness(1.4);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        box-shadow: 
+            0 0 50px rgba(0, 231, 255, 0.5),
+            0 0 100px rgba(0, 231, 255, 0.3),
+            0 0 150px rgba(0, 231, 255, 0.2),
+            inset 0 0 50px rgba(0, 231, 255, 0.5);
+        filter: brightness(1.2);
+    }
+}
+
+.floating-lion {
+    content: '';
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 150px;
+    height: 150px;
+    background: url('./assets/cute-lion.png') no-repeat center center;
+    background-size: contain;
+    z-index: 10;
+    opacity: 0.8;
+    transition: transform 0.3s ease;
+    pointer-events: none;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+    width: 66.67%;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    color: #CCCCCC;
+}
+
+.upload-area {
+    width: 66.67%;
+    margin: 0 auto;
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    text-align: center;
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.upload-area:hover {
+    border-color: rgba(255, 0, 0, 0.6);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+}
+
+.upload-box {
+    padding: 2rem;
+}
+
+.upload-icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1rem;
+}
+
+.upload-box p {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: var(--text-glow);
+}
+
+.sub-text {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.preview-container {
+    margin-top: 2rem;
+}
+
+.preview-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.original-image,
+.compressed-image {
+    background: var(--card-background);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.original-image h3,
+.compressed-image h3 {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: var(--text-glow);
+}
+
+.file-info {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.image-container {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    margin: 1rem 0;
+    border-radius: var(--border-radius);
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.controls {
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.quality-control {
+    margin-bottom: 1rem;
+}
+
+.quality-control label {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: var(--text-glow);
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 15px;
+    background: var(--sapphire-blue);
+    border-radius: 5px;
+    margin: 2rem 0;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(65, 105, 225, 0.5);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 80px;
+    height: 80px;
+    background: url('./assets/cute-tiger.png') no-repeat center center;
+    background-size: contain;
+    cursor: pointer;
+    margin-top: -35px;
+    filter: drop-shadow(var(--sapphire-glow));
+    transition: transform 0.2s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 25px rgba(65, 105, 225, 1));
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 80px;
+    height: 80px;
+    background: url('./assets/cute-tiger.png') no-repeat center center;
+    background-size: contain;
+    cursor: pointer;
+    border: none;
+    filter: drop-shadow(var(--sapphire-glow));
+}
+
+.download-btn {
+    background: var(--sapphire-blue);
+    color: white;
+    border: none;
+    padding: 1.2rem 1.8rem;
+    border-radius: var(--border-radius);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-shadow: var(--sapphire-glow);
+    box-shadow: var(--sapphire-glow);
+}
+
+@media (max-width: 768px) {
+    .preview-box {
+        grid-template-columns: 1fr;
+    }
+    .download-btn {
+        margin-right: 0;
+        width: 100%;
+    }
+} 
